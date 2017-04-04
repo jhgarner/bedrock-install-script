@@ -19,12 +19,12 @@ else
 	echo "init = $initsystem" >> /bedrock/etc/strata.conf
 
 	#Set the defaults for booting
-	echo "default_strataum = $strata" >> /bedrock/etc/brn.conf
+	echo "default_stratum = $strata" >> /bedrock/etc/brn.conf
 	echo "default_cmd = $initsystem" >> /bedrock/etc/brn.conf
 	echo "timeout = 10" >> /bedrock/etc/brn.conf
 
 	#Make the aliases
-	sed -i 's/<DO AT INSTALL TIME>/$strata/g' /bedrock/etc/aliases.conf
+	sed -i "s/<DO AT INSTALL TIME>/$strata/g" /bedrock/etc/aliases.conf
 	mkdir -p /bedrock/strata/$strata
 	chmod a+rx /bedrock/strata/$strata
 	ln -s $strata /bedrock/strata/rootfs
