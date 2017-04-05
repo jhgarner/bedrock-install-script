@@ -10,21 +10,21 @@ else
 	/bedrock/libexec/setcap cap_sys_chroot=ep /bedrock/bin/brc
 
 	#Get some info from the user
-	read -p "Stratum Name: " strat
+	read -p "Stratum Name: " strata
 	read -p "What is your init system? " initsystem
 
 	#Write the strata conf file
-	echo "[$start]" >> /bedrock/etc/strata.conf
+	echo "[$strata]" >> /bedrock/etc/strata.conf
 	echo "framework = global" >> /bedrock/etc/strata.conf
 	echo "init = $initsystem" >> /bedrock/etc/strata.conf
 
 	#Set the defaults for booting
-	echo "default_stratum = $strat" >> /bedrock/etc/brn.conf
+	echo "default_strataum = $strata" >> /bedrock/etc/brn.conf
 	echo "default_cmd = $initsystem" >> /bedrock/etc/brn.conf
 	echo "timeout = 10" >> /bedrock/etc/brn.conf
 
 	#Make the aliases
-	sed -i 's/<DO AT INSTALL TIME>/$strat/g' /bedrock/etc/aliases.conf
+	sed -i 's/<DO AT INSTALL TIME>/$strata/g' /bedrock/etc/aliases.conf
 	mkdir -p /bedrock/strata/$strata
 	chmod a+rx /bedrock/strata/$strata
 	ln -s $strata /bedrock/strata/rootfs
